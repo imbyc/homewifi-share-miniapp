@@ -1,5 +1,6 @@
 const envConfig = require('../../env.js');
 const wifiInfo = require('./home-guestwifi.js');
+const apiUrls = require('../../api.js'); // 引入api.js文件
 
 Page({
     onShareAppMessage() {
@@ -43,7 +44,7 @@ Page({
     loadWifiInfoFromAPI: function () {
         this.showMessage('请求 Wi-Fi 信息中...', 'loading', 'LOADING_WIFI_INFO_API'); // 显示加载状态
         wx.request({
-            url: 'https://aimy-life.oss-cn-hangzhou.aliyuncs.com/home-guestwifi.json',
+            url: apiUrls.wifiInfo, // 使用配置中的接口地址
             method: 'GET',
             success: (res) => {
                 console.log("res.data",res)
