@@ -1,0 +1,9 @@
+<view class="container">
+    <view class="header">
+        <text class="title">欢迎使用 Wi-Fi 连接小程序！</text>
+    </view>
+    <view class="content">
+        <text class="description">本小程序帮助访客轻松连接家里 Wi-Fi 网络。</text>
+    </view>
+    <button class="start-button" bindtap="goToConnectWifi">开始使用</button>
+</view>

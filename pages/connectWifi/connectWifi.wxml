@@ -1,0 +1,24 @@
+<view class="container">
+    <view class="status">
+        <!-- 表情和文本 -->
+        <view class="icon-text">
+            <text wx:if="{{messageType == 'loading'}}" class="loading-spinner">⏳</text>
+            <text wx:elif="{{messageType == 'success'}}">😀</text>
+            <text wx:elif="{{messageType == 'error'}}">😥</text>
+        </view>
+        <text class="message-text" style="white-space: normal;">{{message}}</text>
+    </view>
+
+    <!-- 按钮操作部分，位置在页面底部 -->
+    <view class="action-buttons">
+        <button wx:if="{{messageIdentifier === 'NO_LOCATION_PERMISSION'}}" bindtap="reauthorizeLocation">获取权限</button>
+        <button wx:if="{{messageIdentifier === 'REAUTHORIZATION_FAILED'}}" bindtap="reauthorizeLocation">我已授权，继续</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_INIT_FAILED'}}" bindtap="initAndCheckWifi">重试</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_STATUS_FAILED' || messageIdentifier === 'WIFI_NOT_ENABLED'}}" bindtap="checkWifiStatus">重新检查</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_NOT_FOUND'}}" bindtap="rescanWifi">重新检查</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_FOUND' && !isConnected}}" bindtap="connectToTargetWifi">连接 Wi-Fi</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_CONNECT_FAILED' && !isConnected}}" bindtap="connectToTargetWifi">重新连接 Wi-Fi</button>
+        <button wx:if="{{messageIdentifier === 'NO_PERMISSION'}}" bindtap="closePage">关闭页面</button>
+        <button wx:if="{{messageIdentifier === 'WIFI_CONNECTED' && isConnected}}" bindtap="closePage">关闭页面</button>
+    </view>
+</view>
